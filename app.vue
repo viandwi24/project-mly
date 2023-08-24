@@ -2,6 +2,9 @@
   <div class="w-full min-h-screen text-gray-100 bg-gray-950">
     <canvas id="canvas" />
     <div class="bg-gray-950 top-0 left-0 fixed z-40 w-full min-h-screen flex text-center justify-center items-center">
+      <div id="loading" class="text-4xl">Please Wait</div>
+    </div>
+    <div class="top-0 left-0 fixed z-40 w-full min-h-screen flex text-center justify-center items-center">
       <div id="result" class="flex-1 font-mono text-[7px] leading-[5px]" />
     </div>
     <div
@@ -32,7 +35,33 @@
 <script setup>
 const isRunning = ref(false)
 const beloved = new ProjectMly()
+const firstLoading = ref(false)
 
+const analyze = () => {
+  const loadingEl = document.getElementById('loading')
+  const resultEL = document.getElementById('result')
+  const b = document.getElementById('subtitle-top')
+  const a = document.getElementById('subtitle-bottom')
+
+  // if result have text
+  const resText = resultEL.innerText?.replaceAll('\n', '').replaceAll(' ', '')
+  if (resText && resText.length > 10) {
+    loadingEl.style.display = 'none'
+    firstLoading.value = true
+    b.style.display = 'block'
+    a.style.display = 'block'
+  } else {
+    loadingEl.style.display = 'block'
+    b.style.display = 'none'
+    a.style.display = 'none'
+  }
+
+  if (!firstLoading.value) setTimeout(analyze, 100)
+}
+
+onMounted(() => {
+  analyze()
+})
 
 const start = () => {
   beloved.run(

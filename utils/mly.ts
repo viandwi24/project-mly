@@ -198,6 +198,14 @@ I can make something good
 50
 00:05:04,200 --> 00:05:07,220
 Something good
+
+51
+00:05:08,300 --> 00:05:10,220
+私はあなたが好きです <3
+
+52
+00:05:10,300 --> 00:05:11,220
+
 `
 const srt2 = `
 1
@@ -400,6 +408,14 @@ Aku bisa membuat sesuatu yang baik
 50
 00:05:04,200 --> 00:05:07,220
 Sesuatu yang baik
+
+51
+00:05:08,300 --> 00:05:10,220
+Love you mely <3
+
+52
+00:05:10,300 --> 00:05:11,220
+
 `
 
 // convert srt to object
@@ -483,7 +499,7 @@ export class ProjectMly {
     const video = document.createElement('video')
     video.src = videoSourceUrl
     video.autoplay = true
-    video.loop = true
+    video.loop = false
     video.muted = false
     video.playsInline = true
     video.style.display = 'none'
